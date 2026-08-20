@@ -1,0 +1,43 @@
+{
+  "skill_name": "cross-session-memory",
+  "evals": [
+    {
+      "id": 0,
+      "name": "remember-trigger",
+      "prompt": "我刚发现这个项目的 MySQL 账号是 readonly 的，建不了库。记住一下，下次别再踩这个坑。",
+      "expected_output": "Should trigger the skill, write a lesson to lessons-learned.md (not notes) with a reusable Rule. MEMORY.md index should be updated. Path discovery should land in .memory/ under the project root.",
+      "files": [],
+      "assertions": [
+        {"text": "memory_dir_created: a .memory/ directory was created under the project root (not global/elsewhere)"},
+        {"text": "lesson_written_to_lessons_file: the lesson was written to lessons-learned.md (not notes), since it is a 'avoid this trap' lesson"},
+        {"text": "has_reusable_rule: the lesson entry contains a reusable Rule (next time X fails, check Y), not just a raw fact"},
+        {"text": "index_updated: MEMORY.md index was updated to reference the new/changed file"}
+      ]
+    },
+    {
+      "id": 1,
+      "name": "resume-session",
+      "prompt": "继续我们上次 feedback-mgr 项目的活儿，接着搞导出功能。",
+      "expected_output": "Should trigger the skill, read existing .memory/ BEFORE acting. Should not assume context blindly. If memory is absent, should init then read.",
+      "files": [],
+      "assertions": [
+        {"text": "read_memory_before_acting: attempted to read existing .memory/ before doing project work"},
+        {"text": "handles_missing_memory_gracefully: if memory absent, initialized it rather than erroring or stalling"},
+        {"text": "did_not_assume_context_blindly: did not fabricate 'remembered' prior context; responded based on actual read state"}
+      ]
+    },
+    {
+      "id": 2,
+      "name": "complex-debug",
+      "prompt": "我在调一个 worker pool 死锁，试了加大 channel buffer 没用，现在怀疑是 result chan 和 shutdown 路径死锁了，准备加 context cancel 试试。",
+      "expected_output": "Should trigger the skill, create/write INVESTIGATION_STATUS.md with: symptom, hypotheses tried (buffer increase ruled out), current state, next step. Should NOT re-test the buffer hypothesis.",
+      "files": [],
+      "assertions": [
+        {"text": "investigation_file_created: created/wrote INVESTIGATION_STATUS.md in .memory/"},
+        {"text": "captured_symptom: recorded the symptom (worker pool deadlock)"},
+        {"text": "recorded_ruled_out_hypothesis: recorded that 'increasing channel buffer' was already tried and ruled out"},
+        {"text": "recorded_next_step: recorded the next step (add context cancel to shutdown path)"}
+      ]
+    }
+  ]
+}
