@@ -1,0 +1,18 @@
+{
+  "name": "project-memory",
+  "owner": {
+    "name": "泰山"
+  },
+  "metadata": {
+    "description": "项目级持久记忆插件——给每个项目一个跨会话存活的 .memory/",
+    "version": "0.1.0"
+  },
+  "plugins": [
+    {
+      "name": "project-memory",
+      "source": "./",
+      "description": "每个 Claude 会话都从失忆开始。这个插件给每个项目一个持久的 .memory/，让上下文、决策和教训跨会话存活。",
+      "version": "0.1.0"
+    }
+  ]
+}
