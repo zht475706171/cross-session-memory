@@ -32,8 +32,8 @@ Add this repository as a marketplace and install:
 
 ```bash
 # in Claude Code
-/plugin marketplace add zht475706171/cross-session-memory
-/plugin install project-memory@cross-session-memory
+/plugin marketplace add zht475706171/project-memory
+/plugin install project-memory@project-memory
 ```
 
 Then verify with `/plugin` or `/skills` — the `project-memory` skill should appear.
@@ -44,12 +44,12 @@ Clone the repo into your Claude plugins directory:
 
 ```bash
 # macOS / Linux
-git clone https://github.com/zht475706171/cross-session-memory \
-  ~/.claude/plugins/cache/manual/cross-session-memory
+git clone https://github.com/zht475706171/project-memory \
+  ~/.claude/plugins/cache/manual/project-memory
 
 # Windows (PowerShell)
-git clone https://github.com/zht475706171/cross-session-memory `
-  $env:USERPROFILE\.claude\plugins\cache\manual\cross-session-memory
+git clone https://github.com/zht475706171/project-memory `
+  $env:USERPROFILE\.claude\plugins\cache\manual\project-memory
 ```
 
 Then restart Claude Code. The `.claude-plugin/plugin.json` manifest makes it discoverable.
